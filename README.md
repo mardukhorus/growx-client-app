@@ -2,7 +2,7 @@
 
 ## Description
 
-Non custodial version of @growx market making bot, for self hosted market making applications. This app acts as a bridge between @growx market maker and user owned account on one of 100+ centralized crypto exchanges. Client app is fully automated and does not require any intervention other than configuration prior to initiation.
+Non custodial version of @growx market maker, for self hosted market making applications. This app acts as a bridge between @growx market maker and user owned account on one of 100+ centralized crypto exchanges. Client app is fully automated and does not require any intervention other than configuration prior to initiation.
 
 ## Market making features
 
@@ -13,13 +13,14 @@ Non custodial version of @growx market making bot, for self hosted market making
 
 - API keys for one or more accounts on supported exchanges (contact support if your exchange is not among 100+ available in @growx/rpcs)
 - @growx access token 
-- cloud server with latest stable versions of "node" and "npm"
+- node v14.17+
+- npm v6.14+
 
 ## Quick Start
 
 #### 1. Get the latest version
 
-You can start by cloning the latest version of GROWX - CLIENT aAPP on your
+You can start by cloning the latest version of GROWX - CLIENT APP on your
 local machine by running:
 
 ```shell
@@ -41,7 +42,7 @@ In config directory you will find 3 files
 
 #### 4. Run `npm test`
 
-Runs tests using config params from ####3.
+Runs tests using your config params from ####3.
 
 #### 5. Run `npm start`
 
@@ -51,4 +52,4 @@ Your app is ready to be deployed!
 
 ## Support
 
-For any additional information please go to (https://t.me/mardukhorus) and raise your questions or feedback provide there. We highly appreciate your participation!
+For any additional information please go to (https://t.me/mardukhorus) and raise your questions or provide feedback there. We highly appreciate your participation!

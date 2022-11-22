@@ -51,4 +51,4 @@ Your app is ready to be deployed!
 
 ## Support
 
-For any additional information please go to (https://https://t.me/mardukhorus) and raise your questions or feedback provide there. We highly appreciate your participation!
+For any additional information please go to (https://t.me/mardukhorus) and raise your questions or feedback provide there. We highly appreciate your participation!

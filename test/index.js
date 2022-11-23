@@ -32,7 +32,7 @@ const test = async ()=>{
 const testMethods = async (exchange,keys)=>{
     try{
         console.log(`Testing - ${exchange}`)
-        if(exchange=='globiance')dummy.symbol='BTC/EUR'
+        exchange=='globiance'?dummy.symbol='BTC/EUR':dummy.symbol='BTC/USDT'
         let stop
         await asyncForEach(methods,async method=>{
             if(!stop){

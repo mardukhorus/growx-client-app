@@ -35,20 +35,22 @@ in [package.json](package.json) file.
 
 #### 3. Complete config
 
-In config directory you will find 3 files
+Copy directory client-app-config outside client-app directory including 3 files
 - [assets.json](assets.json) config parameters for each asset pair
 - [credentials.json](credentials.json) API keys for each exchange account
 - [growx-mm.json](growx-mm.json) config parameters for growx market making service
 
+Edit parameters according to your private settings.
+
 #### 4. Run `npm test`
 
-Runs tests using your config params from ####3.
+Runs tests against exchanges specified in config files.
 
 #### 5. Run `npm start`
 
 Runs the app.
 
-Your app is ready to be deployed!
+Your app is ready!
 
 ## Support
 

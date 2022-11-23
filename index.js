@@ -1,8 +1,8 @@
 const client = require('@growx/client')
 const { rpc } = require('@growx/rpcs')
-const growxMM = require('../growx-mm.json')
-const credentials = require('../credentials.json')
-const assets = require('./config/assets.json')
+const growxMM = require('../client-app-config/growx-mm.json')
+const credentials = require('../client-app-config/credentials.json')
+const assets = require('../client-app-config/assets.json')
 
 const init = async (growxMM,credentials,assets)=>{
     try{

@@ -1,7 +1,7 @@
 const { rpc } = require('@growx/rpcs')
 //const { rpc } = require('../../rpcs')
 
-let credentials = require('../../credentials.json')
+let credentials = require('../../client-app-config/credentials.json')
 let methods = [
     {method: 'fetchMarkets', params: []},
     {method: 'fetchOrderBook', params: ['symbol']},

@@ -17,7 +17,7 @@ let dummy = {
     price: null,
     quantity: null,
     id: null,
-    usdt: 15
+    usdt: 11
 }
 
 const test = async ()=>{
@@ -31,8 +31,8 @@ const test = async ()=>{
 }
 const testMethods = async (exchange,keys)=>{
     try{
-        console.log(`Testing - ${exchange}`)
-        exchange=='globiance'?dummy.symbol='BTC/EUR':dummy.symbol='BTC/USDT'
+        exchange=='globiance'?dummy.symbol='GBEX/USDG':dummy.symbol='BTC/USDT'
+        console.log(`Testing - ${exchange} ${dummy.symbol}`)
         let stop
         await asyncForEach(methods,async method=>{
             if(!stop){

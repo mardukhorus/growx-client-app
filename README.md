@@ -14,7 +14,7 @@ Non custodial version of @growx market maker, for self hosted market making appl
 - API keys for one or more accounts on supported exchanges (contact support if your exchange is not among 100+ available in @growx/rpcs)
 - @growx access token 
 - node v14.17+
-- npm v6.14+
+- npm v9.1+
 
 ## Quick Start
 

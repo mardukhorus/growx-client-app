@@ -36,9 +36,8 @@ in [package.json](package.json) file.
 #### 3. Complete config
 
 Copy directory client-app-config outside client-app directory including 3 files
-- [assets.json](assets.json) config parameters for each asset pair
 - [credentials.json](credentials.json) API keys for each exchange account
-- [growx-mm.json](growx-mm.json) config parameters for growx market making service
+- [growx-bot.json](growx-bot.json) config parameters for growx market making service
 
 Edit parameters according to your private settings.
 

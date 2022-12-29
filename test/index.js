@@ -1,7 +1,7 @@
-const { rpc } = require('@growx/rpcs')
-//const { rpc } = require('../../rpcs')
+//const { rpc } = require('@growx/rpcs')
+const { rpc } = require('../../rpcs')
 
-let credentials = require('../../client-app-config/credentials.json')
+let credentials = require('../../client-app-config/GBcredentials.json')
 let methods = [
     {method: 'fetchMarkets', params: []},
     {method: 'fetchOrderBook', params: ['symbol']},
@@ -10,6 +10,7 @@ let methods = [
     {method: 'fetchOpenOrders', params: ['symbol']},
     {method: 'cancelOrder', params: ['id','symbol']},
 ]
+
 let dummy = {
     symbol: 'BTC/USDT',
     limit: 'limit',

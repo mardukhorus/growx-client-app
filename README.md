@@ -35,7 +35,7 @@ in [package.json](package.json) file.
 
 #### 3. Complete config
 
-Copy directory client-app-config outside client-app directory including 3 files
+Copy contents of @growx/client-app/client-app-config into a new @growx/client-app-config directory including 2 files
 - [credentials.json](credentials.json) API keys for each exchange account
 - [growx-bot.json](growx-bot.json) config parameters for growx market making service
 

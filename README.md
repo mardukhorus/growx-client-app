@@ -53,4 +53,4 @@ Your app is ready!
 
 ## Support
 
-For any additional information please go to (https://t.me/mardukhorus) and raise your questions or provide feedback there. We highly appreciate your participation!
+For any additional information please go to (https://growx.me/gx/help) and raise your questions or provide feedback there. We highly appreciate your participation!

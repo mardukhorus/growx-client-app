@@ -1,5 +1,5 @@
 //const { rpc } = require('@growx/rpcs')
-const { rpc } = require('../../rpcs')
+const { rpc } = require('@growx/rpcs')
 
 let credentials = require('../../client-app-config/credentials.json')
 let methods = [

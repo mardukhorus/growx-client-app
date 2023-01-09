@@ -6,11 +6,8 @@ const credentials = require('../client-app-config/credentials.json')
 const init = async (growxMM,credentials)=>{
     try{
         let instructions = await client.getInstructions(growxMM)
-        console.log(instructions)
         let results = await client.executeInstructions(rpc,credentials,instructions)
-        console.log(results)
         let report = await client.reportResults(growxMM,results)
-        console.log(report)
     }catch(e){
         console.log(e)
     }

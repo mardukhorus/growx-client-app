@@ -12,7 +12,7 @@ let methods = [
 ]
 
 let dummy = {
-    symbol: 'BTC/USDT',
+    symbol: 'OJX20/USDT',
     limit: 'limit',
     side: 'buy',
     price: null,
@@ -32,7 +32,7 @@ const test = async ()=>{
 }
 const testMethods = async (exchange,keys)=>{
     try{
-        exchange=='globiance'?dummy.symbol='GBEX/USDG':dummy.symbol='BTC/USDT'
+        //exchange=='globiance'?dummy.symbol='GBEX/USDG':dummy.symbol='BTC/USDT'
         console.log(`Testing - ${exchange} ${dummy.symbol}`)
         let stop
         await asyncForEach(methods,async method=>{
@@ -71,6 +71,7 @@ const isValid = (method,response)=>{
                 break
             case 'fetchOrderBook': 
                 validations = 0
+                //console.log(response)
                 if(!Array.isArray(response)){
                     validations++
                     if(typeof response == 'object'){
@@ -86,11 +87,13 @@ const isValid = (method,response)=>{
                             ){
                                 validations++
                                 if(
-                                    Array.isArray(response.asks[0]) &&
+                                    Array.isArray(response.asks[0]) ||
                                     Array.isArray(response.bids[0])
                                 ){
                                     validations++
-                                    dummy.price = response.asks[0][0]/2
+                                    response.asks.length 
+                                    ? dummy.price = response.asks[0][0]/2
+                                    : dummy.price = response.bids[0][0]/2
                                     dummy.quantity = dummy.usdt / dummy.price
                                 }else{console.log(`Order format is not array of numbers: ${method}.`)}
                             }else{console.log(`Asks/bids are not arrays: ${method}.`)}

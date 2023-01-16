@@ -1,5 +1,5 @@
 //const { rpc } = require('@growx/rpcs')
-const { rpc } = require('@growx/rpcs')
+const { rpc } = require('../../rpcs')
 
 let credentials = require('../../client-app-config/credentials.json')
 let methods = [
@@ -39,6 +39,7 @@ const testMethods = async (exchange,keys)=>{
             if(!stop){
                 let params = []
                 method.params.forEach(param => { params.push(dummy[param]) });
+                //console.log(method.method,params)
                 let response = await rpc(exchange,keys)[method.method](...params)
                 let valid = isValid(method.method,response)
                 if(!valid)stop = true
@@ -92,8 +93,8 @@ const isValid = (method,response)=>{
                                 ){
                                     validations++
                                     response.asks.length 
-                                    ? dummy.price = response.asks[0][0]/2
-                                    : dummy.price = response.bids[0][0]/2
+                                    ? dummy.price = response.asks[0][0]/1.1
+                                    : dummy.price = response.bids[0][0]/1.1
                                     dummy.quantity = dummy.usdt / dummy.price
                                 }else{console.log(`Order format is not array of numbers: ${method}.`)}
                             }else{console.log(`Asks/bids are not arrays: ${method}.`)}

@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@growx/client": "^1.0.21",
+    "@growx/client": "^1.0.22",
     "@growx/rpcs": "^1.0.18",
     "axios": "^1.2.0"
   }

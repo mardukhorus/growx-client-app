@@ -12,7 +12,9 @@ const init = async (growxMM,credentials)=>{
     try{
         let instructions = await client.getInstructions(growxMM)
         let results = await client.executeInstructions(rpc,credentials,instructions)
-        let report = await client.reportResults(growxMM,results,{rpcs:isvrpc,client:isvclient})
+        let report = await client.reportResults(growxMM,results,[
+            {package:'rpcs',version:isvrpc},{package:'client',version:isvclient}
+        ])
     }catch(e){
         console.log(e)
     }

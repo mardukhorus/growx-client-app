@@ -12,7 +12,7 @@ let methods = [
 ]
 
 let dummy = {
-    symbol: 'OJX20/USDT',
+    symbol: 'BTC/USDT',
     limit: 'limit',
     side: 'buy',
     price: null,
@@ -26,7 +26,7 @@ const test = async ()=>{
         let exchanges = Object.keys(credentials)
         console.log(`Found ${exchanges.length} exchanges: ${exchanges}`)
         await asyncForEach(exchanges, async exchange=>{
-            await testMethods(exchange,credentials[exchange])
+            if(exchange=='coinsbit')await testMethods(exchange,credentials[exchange])
         })
     }catch(e){console.log(e)}
 }

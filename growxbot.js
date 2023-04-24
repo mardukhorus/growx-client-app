@@ -1,5 +1,6 @@
 const client = require('@growx/client')
 const { rpc } = require('@growx/rpcs')
+const crud = require('./crud')
 const fs = require('fs');
 const path = require('path');
 
@@ -12,7 +13,7 @@ let alert
 const init = async ()=>{
     try{
         if(!alert){
-            console.log('GrowX BOT running!!!')
+            console.log('GrowX BOT launched!!!')
             alert = true
         }
         let growxKey = await fs.readFileSync( path.resolve(__dirname,'../keychain/growx-key.json'), 'utf8')
@@ -21,9 +22,14 @@ const init = async ()=>{
         keychain = JSON.parse(keychain)
 
         let instructions = await client.getInstructions(growxKey)
-        // send keychain list trimmed
-        // if instruction for KEYCHAIN => CRUD keychain
-        let results = await client.executeInstructions(rpc,keychain,instructions)
+        let crudins = []
+        let clientins = []
+        instructions.forEach(ins => {
+            ins.keychain ? crudins.push(ins) : clientins.push(ins)
+        });
+        let clientres = await client.executeInstructions(rpc,keychain,clientins)
+        let crudres = await crud.exe(crudins)
+        let results = [...clientres,...crudres]
         let report = await client.reportResults(growxKey,results,[
             {package:'rpcs',version:isvrpc},{package:'client',version:isvclient}
         ])

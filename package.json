@@ -1,5 +1,5 @@
 {
-  "name": "client-app",
+  "name": "GrowX-BOT",
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
@@ -11,8 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@growx/client": "^1.0.22",
-    "@growx/rpcs": "^1.0.23",
-    "axios": "^1.2.0"
+    "@growx/client": "^1.0.25",
+    "@growx/rpcs": "^1.0.25",
+    "axios": "^1.2.0",
+    "prompt-sync": "^4.2.0"
   }
 }

@@ -1,32 +1,70 @@
-const client = require('@growx/client')
-const { rpc } = require('@growx/rpcs')
-const growxMM = require('../client-app-config/growx-bot.json')
-const credentials = require('../client-app-config/credentials.json')
+const fs = require('fs');
+const path = require('path');
+const navigation = require('./navigation')
 
-const isvrpc = require('@growx/rpcs/package.json').version
-const usvrpc = require('./package.json').dependencies['@growx/rpcs'].replace('^','')
-const isvclient = require('@growx/client/package.json').version
-const usvclient = require('./package.json').dependencies['@growx/client'].replace('^','')
+console.log('***************************************')
+console.log('************** GROWX BOT **************')
+console.log('***************************************')
+console.log('************* Ctrl+C exit *************')
+console.log('***************************************')
+console.log('')
+console.log(`-> Hi! I'm here to help you with your setup.`)
 
-const init = async (growxMM,credentials)=>{
+setup()
+async function setup(){
     try{
-        let instructions = await client.getInstructions(growxMM)
-        let results = await client.executeInstructions(rpc,credentials,instructions)
-        let report = await client.reportResults(growxMM,results,[
-            {package:'rpcs',version:isvrpc},{package:'client',version:isvclient}
-        ])
-    }catch(e){
-        console.log(e)
-    }
-    setTimeout(()=>{
-        init(growxMM,credentials)
-    },10e3)
+        await handleKeychain()
+        await navigation()
+    }catch(e){throw e}
 }
-const version_control = ()=>{
-    return isvrpc==usvrpc&&isvclient==usvclient
+
+async function handleKeychain(){
+    try{
+        let keysdir = await fs.existsSync(path.resolve(__dirname,'../keychain'))
+        if(!keysdir) await fs.mkdirSync(path.resolve(__dirname,'../keychain'))
+
+        let keydir = await fs.existsSync(path.resolve(__dirname,'../keychain/keychain.json'))
+        let gwxdir = await fs.existsSync(path.resolve(__dirname,'../keychain/growx-key.json'))
+        if(!keydir){
+            await fs.writeFileSync( path.resolve(__dirname,'../keychain/keychain.json'), '[]', 'utf8')
+            console.log(`-> Created Keychain at ../keychain/keychain.json`)
+
+            let oldkeydir = await fs.existsSync(path.resolve(__dirname,'../client-app-config/credentials.json'))
+            if(oldkeydir){
+                let oldkeychain = await fs.readFileSync( path.resolve(__dirname,'../client-app-config/credentials.json'), 'utf8')
+                oldkeychain = JSON.parse(oldkeychain)
+                let keychain = []
+                Object.keys(oldkeychain).forEach(key=>{
+                    keychain.push({
+                        exchange: key,
+                        keys: oldkeychain[key]
+                    })
+                })
+                keychain = JSON.stringify(keychain,null,4)
+                await fs.writeFileSync( path.resolve(__dirname,'../keychain/keychain.json'), keychain, 'utf8')
+                console.log(`-> Imported old Keychain from ../client-app-config/credentials.json to ../keychain/keychain.json`)
+            }
+            keydir = true
+        }
+        if(!gwxdir){
+            await fs.writeFileSync( path.resolve(__dirname,'../keychain/growx-key.json'), '{}', 'utf8')
+            console.log(`-> Created GrowX key at ../keychain/growx-key.json`)
+
+            let oldgwxdir = await fs.existsSync(path.resolve(__dirname,'../client-app-config/growx-bot.json'))
+            if(oldgwxdir){
+                let oldgwxkey = await fs.readFileSync( path.resolve(__dirname,'../client-app-config/growx-bot.json'), 'utf8')
+                await fs.writeFileSync( path.resolve(__dirname,'../keychain/growx-key.json'), oldgwxkey, 'utf8')
+                console.log(`-> Imported old GrowX key from ../client-app-config/growx-bot.json to ../keychain/growx-key.json`)
+            }
+            gwxdir = true
+        }
+        if(keydir && gwxdir){
+            let keychain = await fs.readFileSync( path.resolve(__dirname,'../keychain/keychain.json'), 'utf8')
+            keychain = JSON.parse(keychain)
+            let gwxkey = await fs.readFileSync( path.resolve(__dirname,'../keychain/growx-key.json'), 'utf8')
+            gwxkey = JSON.parse(gwxkey)
+            console.log(`-> Keychain found, ${keychain.length} key(s) available`)
+            gwxkey.token ? console.log(`-> GrowX keys found`) : console.log(`-> GrowX keys NOT found`)
+        }
+    }catch(e){throw e}
 }
-version_control()
-?client.validateConfig(growxMM,credentials)
-    ? init(growxMM,credentials)
-    : console.log('Config params did not pass validation, please revise!')
-:console.log('Versioning issue, please update with "npm update"')

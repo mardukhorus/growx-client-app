@@ -2,6 +2,7 @@
 const { rpc } = require('@growx/rpcs')
 
 let credentials = require('../../client-app-config/credentials.json')
+console.log(credentials)
 let methods = [
     {method: 'fetchMarkets', params: []},
     {method: 'fetchOrderBook', params: ['symbol']},
@@ -12,7 +13,7 @@ let methods = [
 ]
 
 let dummy = {
-    symbol: 'BTC/USDT',
+    symbol: 'FAKT/USDT',
     limit: 'limit',
     side: 'buy',
     price: null,
@@ -23,10 +24,10 @@ let dummy = {
 
 const test = async ()=>{
     try{
-        let exchanges = Object.keys(credentials)
-        console.log(`Found ${exchanges.length} exchanges: ${exchanges}`)
-        await asyncForEach(exchanges, async exchange=>{
-            if(exchange=='coinsbit')await testMethods(exchange,credentials[exchange])
+        console.log(`Found ${credentials.length} keys`)
+        await asyncForEach(credentials, async key=>{
+            let exchange = key.exchange
+            if(exchange=='coinsbit')await testMethods(exchange,key.keys)
         })
     }catch(e){console.log(e)}
 }

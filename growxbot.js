@@ -24,7 +24,7 @@ const init = async ()=>{
         keychain.forEach(k=> mykeys.push([k.exchange,k.keys.apiKey]))
 
 
-        let instructions = await client.getInstructions(growxKey,keychain)
+        let instructions = await client.getInstructions(growxKey,mykeys)
         let crudins = []
         let clientins = []
         instructions.forEach(ins => {

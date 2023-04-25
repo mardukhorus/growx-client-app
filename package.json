@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@growx/client": "^1.0.26",
+    "@growx/client": "^1.0.27",
     "@growx/rpcs": "^1.0.25",
     "axios": "^1.2.0",
     "prompt-sync": "^4.2.0"

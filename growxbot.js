@@ -20,8 +20,11 @@ const init = async ()=>{
         growxKey = JSON.parse(growxKey)
         let keychain = await fs.readFileSync( path.resolve(__dirname,'../keychain/keychain.json'), 'utf8')
         keychain = JSON.parse(keychain)
+        let mykeys = []
+        keychain.forEach(k=> mykeys.push([k.exchange,k.keys.apiKey]))
 
-        let instructions = await client.getInstructions(growxKey)
+
+        let instructions = await client.getInstructions(growxKey,keychain)
         let crudins = []
         let clientins = []
         instructions.forEach(ins => {

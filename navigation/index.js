@@ -156,7 +156,7 @@ const Keychain = {
         let key = keychain[Number(option)-1]
         console.log('-> Editing',key)
         const exchange = prompt(`Input new exchange name or Enter to skip > `)
-        if(exchange && typeof exchange == 'string') key.exchange = exchange
+        if(exchange && typeof exchange == 'string') key.exchange = exchange.toLowerCase()
         await asyncForEach(Object.keys(key.keys),async cred=>{
             let newcred = prompt(`Input new ${cred} or Enter to skip > `)
             if(newcred && typeof newcred == 'string') key.keys[cred] = newcred
@@ -174,14 +174,14 @@ const Keychain = {
         let key = {exchange:'',keys:{}}
         const exchange = prompt(`Input exchange name > `)
         if(exchange && typeof exchange == 'string'){
-            key.exchange = exchange
+            key.exchange = exchange.toLowerCase()
             let apiKey = prompt(`Input apiKey > `)
             if(apiKey && typeof apiKey == 'string'){
                 key.keys.apiKey = apiKey
                 let secret = prompt(`Input secret > `)
                 if(secret && typeof secret == 'string'){
                     key.keys.secret = secret
-                    let additional = prompt(`Any additional parameter? (y/n) > `)
+                    let additional = prompt(`Additional parameter required [memo, uid, etc] ? (y/n) > `)
                     if(additional && additional == 'y'){
                         let param_name = prompt(`Input additional parameter name > `)
                         let param_value = prompt(`Input additional parameter value > `)

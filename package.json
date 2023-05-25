@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@growx/client": "^1.0.27",
-    "@growx/rpcs": "^1.0.29",
+    "@growx/rpcs": "^1.0.30",
     "axios": "^1.2.0",
     "prompt-sync": "^4.2.0"
   }
